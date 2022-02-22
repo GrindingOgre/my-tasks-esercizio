@@ -1,0 +1,22 @@
+<div class="p-4 border">
+    <div class="float-end text-muted text-end">
+        <i class="bi bi-calendar-event me-1"></i> {{ todo?.scadenza }}<br>
+        <span class="badge bg-warning"
+              *ngIf="todo?.urgente">Urgente</span>
+    </div>
+    <span class="h4">{{ todo?.titolo }}</span>
+    <p class="mb-2 text-muted">{{ todo?.descrizione }}</p>
+    <ul class="nav nav-pills"
+        *ngIf="!todo?.completato">
+        <li class="nav-item">
+            <button class="nav-link ps-0 text-success"
+                    (click)="completeTodo()"
+                    type="button">Completa</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link text-danger"
+                    type="button"
+                    (click)="deleteTodo()">Elimina</button>
+        </li>
+    </ul>
+</div>

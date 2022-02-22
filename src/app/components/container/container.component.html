@@ -1,0 +1,52 @@
+<div class="container">
+    <h1 class="display-1">My tasks</h1>
+    <h4 class="mb-3 text-muted">Things to do</h4>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <!-- LISTA -->
+            <ul class="nav nav-tabs mt-5"
+                id="myTab"
+                role="tablist">
+                <li class="nav-item"
+                    role="presentation">
+                    <button class="nav-link"
+                            id="todo-tab"
+                            (click)="setTabAttivo('todo')"
+                            [ngClass]="isTabAttivo('todo')"
+                            type="button">
+                        <i class="bi bi-list"></i>
+                        Da fare
+                    </button>
+                </li>
+                <li class="nav-item"
+                    role="presentation">
+                    <button class="nav-link"
+                            id="done-tab"
+                            (click)="setTabAttivo('done')"
+                            [ngClass]="isTabAttivo('done')"
+                            type="button">
+                        <i class="bi bi-check2"></i>
+                        Completati
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content border border-top-0"
+                 [ngSwitch]="tab">
+                <app-todos [lista]="daCompletare"
+                           (remove)="removeTodo($event)"
+                           *ngSwitchCase="'todo'"></app-todos>
+                <app-completed [lista]="completati"
+                               *ngSwitchCase="'done'"></app-completed>
+                <div *ngSwitchDefault
+                     class="alert alert-warning">
+                    Scelta non valida
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <!-- FORM -->
+            <app-form (aggiungi)="addTask($event)"></app-form>
+        </div>
+    </div>
+</div>

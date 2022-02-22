@@ -1,0 +1,6 @@
+<div *ngIf="lista?.length === 0"
+     class="text-center text-muted p-5">
+    Non ci sono task completati nella lista...
+</div>
+<app-todo *ngFor="let todo of lista"
+          [todo]="todo"></app-todo>
